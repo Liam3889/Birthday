@@ -196,6 +196,20 @@ p {
   font-weight: bold;
 }
 
+/* LONG MESSAGE */
+
+.long-message {
+  text-align: left;
+  margin-top: 35px;
+  padding: 5px 10px;
+}
+
+.long-message p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
 /* ANIMATIONS */
 
 @keyframes heartbeat {
@@ -295,6 +309,15 @@ p {
     font-size: 14px;
   }
 
+  .long-message {
+    padding: 5px 3px;
+  }
+
+  .long-message p {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
 }
 
 </style>
@@ -390,6 +413,30 @@ p {
     <p>
       Can't wait to see you there ❤️
     </p>
+
+
+    <!-- YOUR MESSAGE -->
+
+    <div class="long-message">
+
+      <p>
+        Jujurly, bnyk yang bisa di omongin, I don't even know where to start , but I just want you to know how happy I am that I get to celebrate this special day with you. You mean so much to me, and even though sometimes I don't say it perfectly or show it in the exact way I should, I hope you always know that you are someone incredibly special to me . WALAUPUN U SUKA NGAMBEK.
+      </p>
+
+      <p>
+        I hope tomorrow isn't just another birthday celebration, but a little memory that we can look back on someday and smile about. I want you to laugh, eat good food, enjoy yourself, and most importantly, feel loved and appreciated because you genuinely deserve all of that and so much more.
+      </p>
+
+      <p>
+        Thank you for being you for all the little things and cute things you do, the random conversations (Except for the roast), the silly moments, the laughs, the memories, and even the moments where we drive each other a little crazy (Banyak BNGT). Somehow, all of those little things are what make everything feel special.
+      </p>
+
+      <p>
+        So tomorrow, no excuses. 😌 You have officially solved all the questions, unlocked the invitation, and now you're coming with me. ❤️ I can't wait to see you, celebrate with you, and make another little memory together. Happy birthday in advance, my favorite person. I hope this next chapter brings you everything you're wishing for, and I hope I get to be there for some of those moments too.
+      </p>
+
+    </div>
+
 
     <p style="font-size:40px;">
       🎂 🎉 🥳 💕
