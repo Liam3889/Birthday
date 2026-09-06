@@ -1,336 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Little Birthday Surprise ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>Birthday Surprise ❤️</title>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Trebuchet MS", cursive, sans-serif;
-      text-align: center;
-      color: #4a1730;
-      background: linear-gradient(135deg, #ff9a9e, #fecfef, #ff758c);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      overflow-x: hidden;
-    }
+<style>
 
-    .container {
-      width: 100%;
-      max-width: 650px;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .screen {
-      display: none;
-      animation: fadeIn 0.6s ease;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #ff9a9e, #fecfef, #ff758c);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #4a1730;
+}
 
-    .screen.active {
-      display: block;
-    }
+#app {
+  width: 100%;
+  max-width: 600px;
+}
 
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 10px;
-      color: #a30f48;
-    }
+/* HEART */
 
-    h2 {
-      font-size: 2rem;
-      color: #a30f48;
-    }
+.heart {
+  width: 130px;
+  height: 130px;
+  background: #ff3f68;
+  margin: 50px auto;
+  transform: rotate(-45deg);
+  position: relative;
+  cursor: pointer;
+  animation: beat 1.2s infinite;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
 
-    p {
-      font-size: 1.25rem;
-      line-height: 1.5;
-    }
+.heart:before,
+.heart:after {
+  content: "";
+  width: 130px;
+  height: 130px;
+  background: #ff3f68;
+  border-radius: 50%;
+  position: absolute;
+}
 
-    /* HEART */
+.heart:before {
+  top: -65px;
+  left: 0;
+}
 
-    .heart {
-      width: 150px;
-      height: 150px;
-      margin: 40px auto;
-      background: #ff3f68;
-      position: relative;
-      transform: rotate(-45deg);
-      cursor: pointer;
-      animation: heartbeat 1.2s infinite;
-      box-shadow: 0 10px 30px rgba(150, 0, 50, 0.25);
-    }
+.heart:after {
+  top: 0;
+  left: 65px;
+}
 
-    .heart:before,
-    .heart:after {
-      content: "";
-      width: 150px;
-      height: 150px;
-      background: #ff3f68;
-      border-radius: 50%;
-      position: absolute;
-    }
+.heart span {
+  position: absolute;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  width: 130px;
+  transform: rotate(45deg);
+  top: 48px;
+  left: 0;
+}
 
-    .heart:before {
-      top: -75px;
-      left: 0;
-    }
+@keyframes beat {
 
-    .heart:after {
-      left: 75px;
-      top: 0;
-    }
+  0%,100% {
+    transform: rotate(-45deg) scale(1);
+  }
 
-    .heart-text {
-      position: absolute;
-      z-index: 5;
-      transform: rotate(45deg);
-      width: 150px;
-      top: 52px;
-      left: 0;
-      color: white;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
+  50% {
+    transform: rotate(-45deg) scale(1.1);
+  }
 
-    /* PUZZLE */
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.88);
-      border-radius: 25px;
-      padding: 30px 25px;
-      box-shadow: 0 15px 40px rgba(120, 0, 50, 0.18);
-    }
+/* CARD */
 
-    .puzzle-number {
-      color: #ff4775;
-      font-weight: bold;
-      font-size: 1rem;
-      letter-spacing: 2px;
-    }
+.card {
+  background: rgba(255,255,255,0.92);
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
 
-    .question {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 25px 0;
-    }
+h1 {
+  color: #a30f48;
+  font-size: 2.5rem;
+}
 
-    .answers {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-width: 400px;
-      margin: auto;
-    }
+h2 {
+  color: #a30f48;
+}
 
-    .answer {
-      border: none;
-      padding: 15px;
-      border-radius: 15px;
-      background: #ff6f91;
-      color: white;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: 0.25s;
-    }
+p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
 
-    .answer:hover {
-      transform: scale(1.04);
-      background: #e94570;
-    }
+.question {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 25px 0;
+}
 
-    .wrong {
-      background: #555 !important;
-      animation: shake 0.35s;
-    }
+.answer {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 15px;
+  border: none;
+  border-radius: 15px;
+  background: #ff5c82;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
 
-    .unlocked {
-      margin-top: 25px;
-      font-size: 1.2rem;
-      color: #a30f48;
-      font-weight: bold;
-    }
+.answer:hover {
+  background: #e93666;
+  transform: scale(1.03);
+}
 
-    .letter {
-      display: inline-flex;
-      width: 55px;
-      height: 55px;
-      justify-content: center;
-      align-items: center;
-      background: #ff3f68;
-      color: white;
-      border-radius: 15px;
-      font-size: 1.7rem;
-      margin: 5px;
-      box-shadow: 0 5px 15px rgba(150, 0, 50, 0.2);
-      animation: pop 0.5s ease;
-    }
+.next {
+  margin-top: 20px;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  background: #a30f48;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
 
-    .next-btn,
-    .start-btn {
-      margin-top: 25px;
-      padding: 14px 30px;
-      border: none;
-      border-radius: 30px;
-      background: #a30f48;
-      color: white;
-      font-size: 1.15rem;
-      cursor: pointer;
-      transition: 0.25s;
-    }
+.next:hover {
+  background: #7d0c38;
+}
 
-    .next-btn:hover,
-    .start-btn:hover {
-      transform: scale(1.08);
-      background: #7d0c38;
-    }
+.letter {
+  display: inline-block;
+  background: #ff3f68;
+  color: white;
+  padding: 10px 17px;
+  border-radius: 12px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 15px;
+}
 
-    /* FINAL */
+.wrong {
+  background: #555 !important;
+}
 
-    .final-heart {
-      font-size: 5rem;
-      animation: heartbeat 1s infinite;
-    }
+.hidden {
+  display: none;
+}
 
-    .invite {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 25px;
-      padding: 30px 20px;
-      box-shadow: 0 15px 40px rgba(120, 0, 50, 0.2);
-    }
+/* CONFETTI */
 
-    .invite h1 {
-      font-size: 2.5rem;
-    }
+.confetti {
+  position: fixed;
+  top: -30px;
+  font-size: 25px;
+  animation: fall 3s linear forwards;
+}
 
-    .details {
-      font-size: 1.3rem;
-      margin: 20px 0;
-    }
+@keyframes fall {
 
-    .secret-message {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #a30f48;
-      margin-top: 25px;
-    }
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
 
-    /* CONFETTI */
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
 
-    .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      top: -20px;
-      animation: fall 3s linear forwards;
-      z-index: 100;
-    }
+}
 
-    @keyframes heartbeat {
-      0%, 100% {
-        transform: rotate(-45deg) scale(1);
-      }
-
-      50% {
-        transform: rotate(-45deg) scale(1.12);
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes pop {
-      0% {
-        transform: scale(0);
-      }
-
-      80% {
-        transform: scale(1.15);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    @keyframes shake {
-      0%, 100% {
-        transform: translateX(0);
-      }
-
-      25% {
-        transform: translateX(-8px);
-      }
-
-      75% {
-        transform: translateX(8px);
-      }
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(720deg);
-      }
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      h2 {
-        font-size: 1.7rem;
-      }
-
-      .heart {
-        width: 120px;
-        height: 120px;
-      }
-
-      .heart:before,
-      .heart:after {
-        width: 120px;
-        height: 120px;
-      }
-
-      .heart:before {
-        top: -60px;
-      }
-
-      .heart:after {
-        left: 60px;
-      }
-
-      .heart-text {
-        width: 120px;
-        top: 40px;
-      }
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<div id="app">
 
-  <!-- START SCREEN -->
-  <section id="start" class="screen active">
+  <!-- START -->
+
+  <div id="start">
 
     <h1>A Little Surprise ❤️</h1>
 
@@ -339,325 +209,385 @@
     </p>
 
     <p>
-      But first, you have to solve a few puzzles. 🧩
+      But first, solve a few puzzles! 🧩
     </p>
 
     <div class="heart" onclick="startGame()">
-      <div class="heart-text">
-        TAP ME
-      </div>
+      <span>TAP ME</span>
     </div>
+
+    <p>❤️ Tap the heart ❤️</p>
+
+  </div>
+
+
+  <!-- PUZZLE -->
+
+  <div id="game" class="card hidden">
+
+    <p id="counter"></p>
+
+    <h2>🧩 Solve the Puzzle</h2>
+
+    <div id="question" class="question"></div>
+
+    <div id="answers"></div>
+
+    <div id="result"></div>
+
+    <button
+      id="next"
+      class="next hidden"
+      onclick="nextPuzzle()">
+      Next ❤️
+    </button>
+
+  </div>
+
+
+  <!-- FINAL -->
+
+  <div id="final" class="card hidden">
+
+    <div style="font-size:70px;">
+      ❤️
+    </div>
+
+    <h1>🎉 You're Invited! 🎉</h1>
 
     <p>
-      ❤️ Tap the heart to begin ❤️
+      You solved all the puzzles!
     </p>
 
-  </section>
+    <hr>
 
+    <p>
+      🎂 <strong>Birthday Celebration</strong>
+    </p>
 
-  <!-- PUZZLE SCREEN -->
-  <section id="puzzleScreen" class="screen">
+    <p>
+      📅 <strong>Tomorrow — 7 September</strong>
+    </p>
 
-    <div class="card">
+    <p>
+      📍 <strong>Pacific Place, Jakarta</strong>
+    </p>
 
-      <div class="puzzle-number" id="puzzleNumber">
-        PUZZLE 1 OF 7
-      </div>
+    <p>
+      Can't wait to see you there! ❤️
+    </p>
 
-      <h2>🧩 Solve this!</h2>
+    <p style="font-size:35px;">
+      🎂 🎉 🥳 💕
+    </p>
 
-      <div class="question" id="question"></div>
-
-      <div class="answers" id="answers"></div>
-
-      <div class="unlocked" id="unlocked"></div>
-
-      <button
-        class="next-btn"
-        id="nextBtn"
-        onclick="nextPuzzle()"
-        style="display:none;">
-        Next ❤️
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- FINAL SCREEN -->
-  <section id="final" class="screen">
-
-    <div class="invite">
-
-      <div class="final-heart">
-        ❤️
-      </div>
-
-      <h1>🎉 You're Invited! 🎉</h1>
-
-      <p class="secret-message">
-        You solved all the clues!
-      </p>
-
-      <p>
-        So here's your reward...
-      </p>
-
-      <div class="details">
-
-        <p>
-          🎂 <strong>Birthday Celebration</strong>
-        </p>
-
-        <p>
-          📅 <strong>Tomorrow — 7 September</strong>
-        </p>
-
-        <p>
-          📍 <strong>Pacific Place, Jakarta</strong>
-        </p>
-
-      </div>
-
-      <p>
-        Can't wait to celebrate with you! ❤️
-      </p>
-
-      <p style="font-size: 2rem;">
-        🎂 🎉 🥳 💕
-      </p>
-
-    </div>
-
-  </section>
+  </div>
 
 </div>
 
 
 <script>
 
-  const puzzles = [
+/*
+====================================
+PUZZLES
+====================================
+*/
 
-    {
-      question: "What comes next? 🍎 🍌 🍎 🍌 ?",
-      answers: ["🍎", "🍊", "🍉", "🍓"],
-      correct: 0,
-      letter: "P"
-    },
+const puzzles = [
 
-    {
-      question: "How many days are in a week?",
-      answers: ["5", "6", "7", "8"],
-      correct: 2,
-      letter: "A"
-    },
+  {
+    question: "What comes next? 🍎 🍌 🍎 🍌 ?",
+    answers: ["🍎", "🍊", "🍉", "🍓"],
+    correct: 0,
+    letter: "P"
+  },
 
-    {
-      question: "Which one doesn't belong?",
-      answers: ["🐶", "🐱", "🐰", "🍕"],
-      correct: 3,
-      letter: "C"
-    },
+  {
+    question: "How many days are in a week?",
+    answers: ["5", "6", "7", "8"],
+    correct: 2,
+    letter: "A"
+  },
 
-    {
-      question: "What is 2 + 3?",
-      answers: ["4", "5", "6", "7"],
-      correct: 1,
-      letter: "I"
-    },
+  {
+    question: "Which one doesn't belong?",
+    answers: ["🐶", "🐱", "🐰", "🍕"],
+    correct: 3,
+    letter: "C"
+  },
 
-    {
-      question: "Which one is a fruit? 🍎",
-      answers: ["🍎 Apple", "🥕 Carrot", "🥔 Potato", "🌽 Corn"],
-      correct: 0,
-      letter: "F"
-    },
+  {
+    question: "What is 2 + 3?",
+    answers: ["4", "5", "6", "7"],
+    correct: 1,
+    letter: "I"
+  },
 
-    {
-      question: "Complete the pattern: ❤️ 💕 ❤️ 💕 ?",
-      answers: ["❤️", "⭐", "🌙", "🎈"],
-      correct: 0,
-      letter: "I"
-    },
+  {
+    question: "Which one is a fruit?",
+    answers: [
+      "🍎 Apple",
+      "🥕 Carrot",
+      "🥔 Potato",
+      "🥦 Broccoli"
+    ],
+    correct: 0,
+    letter: "F"
+  },
 
-    {
-      question: "What do birthdays usually have? 🎂",
-      answers: ["Cake", "Homework", "Rain", "Snow"],
-      correct: 0,
-      letter: "C"
-    }
+  {
+    question: "Complete the pattern: ❤️ 💕 ❤️ 💕 ?",
+    answers: [
+      "❤️",
+      "⭐",
+      "🌙",
+      "🎈"
+    ],
+    correct: 0,
+    letter: "I"
+  },
 
-  ];
-
-  let currentPuzzle = 0;
-  let unlockedLetters = [];
-
-
-  function startGame() {
-
-    document.getElementById("start").classList.remove("active");
-
-    document.getElementById("puzzleScreen").classList.add("active");
-
-    showPuzzle();
-
+  {
+    question: "What do birthdays usually have? 🎂",
+    answers: [
+      "Cake 🎂",
+      "Homework 📚",
+      "Rain 🌧️",
+      "Snow ❄️"
+    ],
+    correct: 0,
+    letter: "C"
   }
 
-
-  function showPuzzle() {
-
-    const puzzle = puzzles[currentPuzzle];
-
-    document.getElementById("puzzleNumber").textContent =
-      "PUZZLE " + (currentPuzzle + 1) + " OF " + puzzles.length;
-
-    document.getElementById("question").textContent =
-      puzzle.question;
-
-    const answersContainer =
-      document.getElementById("answers");
-
-    answersContainer.innerHTML = "";
-
-    document.getElementById("unlocked").innerHTML = "";
-
-    document.getElementById("nextBtn").style.display = "none";
+];
 
 
-    puzzle.answers.forEach((answer, index) => {
+/*
+====================================
+GAME VARIABLES
+====================================
+*/
 
-      const button = document.createElement("button");
+let current = 0;
 
-      button.className = "answer";
+let letters = [];
 
-      button.textContent = answer;
 
-      button.onclick = function() {
+/*
+====================================
+START GAME
+====================================
+*/
 
-        checkAnswer(index, button);
+function startGame() {
 
-      };
+  document.getElementById("start").classList.add("hidden");
 
-      answersContainer.appendChild(button);
+  document.getElementById("game").classList.remove("hidden");
+
+  showPuzzle();
+
+}
+
+
+/*
+====================================
+SHOW PUZZLE
+====================================
+*/
+
+function showPuzzle() {
+
+  const puzzle = puzzles[current];
+
+  document.getElementById("counter").innerText =
+    "Puzzle " + (current + 1) + " of " + puzzles.length;
+
+  document.getElementById("question").innerText =
+    puzzle.question;
+
+  document.getElementById("result").innerHTML = "";
+
+  document.getElementById("next").classList.add("hidden");
+
+  const answers =
+    document.getElementById("answers");
+
+  answers.innerHTML = "";
+
+
+  puzzle.answers.forEach(function(answer, index) {
+
+    const button =
+      document.createElement("button");
+
+    button.className = "answer";
+
+    button.innerText = answer;
+
+    button.onclick = function() {
+
+      checkAnswer(index, button);
+
+    };
+
+    answers.appendChild(button);
+
+  });
+
+}
+
+
+/*
+====================================
+CHECK ANSWER
+====================================
+*/
+
+function checkAnswer(index, button) {
+
+  const puzzle = puzzles[current];
+
+
+  if (index === puzzle.correct) {
+
+    letters.push(puzzle.letter);
+
+    button.style.background = "#35a86b";
+
+    document.getElementById("result").innerHTML =
+      "<p>🎉 Correct!</p>" +
+      "<p>You unlocked:</p>" +
+      '<div class="letter">' +
+      puzzle.letter +
+      "</div>";
+
+
+    document.getElementById("next")
+      .classList.remove("hidden");
+
+
+    const buttons =
+      document.querySelectorAll(".answer");
+
+    buttons.forEach(function(btn) {
+
+      btn.disabled = true;
 
     });
 
   }
 
+  else {
 
-  function checkAnswer(index, button) {
+    button.classList.add("wrong");
 
-    const puzzle = puzzles[currentPuzzle];
+    button.innerText = "❌ Nope! Try again";
 
-    if (index === puzzle.correct) {
+    setTimeout(function() {
 
-      // Prevent clicking multiple times
-      const allButtons =
-        document.querySelectorAll(".answer");
+      button.classList.remove("wrong");
 
-      allButtons.forEach(btn => {
-        btn.disabled = true;
-      });
+      button.innerText =
+        puzzle.answers[index];
 
-
-      unlockedLetters.push(puzzle.letter);
-
-
-      document.getElementById("unlocked").innerHTML =
-        "🔓 Letter unlocked!<br><br>" +
-        '<span class="letter">' +
-        puzzle.letter +
-        "</span>";
-
-
-      button.style.background = "#39a96b";
-
-      document.getElementById("nextBtn").style.display =
-        "inline-block";
-
-    } else {
-
-      button.classList.add("wrong");
-
-      button.textContent = "❌ Try again!";
-
-      setTimeout(() => {
-
-        button.classList.remove("wrong");
-
-        button.textContent =
-          puzzle.answers[index];
-
-      }, 700);
-
-    }
+    }, 800);
 
   }
 
-
-  function nextPuzzle() {
-
-    currentPuzzle++;
-
-    if (currentPuzzle < puzzles.length) {
-
-      showPuzzle();
-
-    } else {
-
-      showFinal();
-
-    }
-
-  }
+}
 
 
-  function showFinal() {
+/*
+====================================
+NEXT PUZZLE
+====================================
+*/
 
-    document.getElementById("puzzleScreen")
-      .classList.remove("active");
+function nextPuzzle() {
 
-    document.getElementById("final")
-      .classList.add("active");
+  current++;
 
-    createConfetti();
+  if (current >= puzzles.length) {
+
+    showFinal();
 
   }
 
+  else {
 
-  function createConfetti() {
-
-    const symbols = ["🎉", "💕", "✨", "🎂", "❤️", "🥳"];
-
-    for (let i = 0; i < 80; i++) {
-
-      const confetti =
-        document.createElement("div");
-
-      confetti.className = "confetti";
-
-      confetti.textContent =
-        symbols[Math.floor(Math.random() * symbols.length)];
-
-      confetti.style.left =
-        Math.random() * 100 + "vw";
-
-      confetti.style.animationDelay =
-        Math.random() * 2 + "s";
-
-      confetti.style.fontSize =
-        (Math.random() * 15 + 10) + "px";
-
-      document.body.appendChild(confetti);
-
-      setTimeout(() => {
-        confetti.remove();
-      }, 5000);
-
-    }
+    showPuzzle();
 
   }
+
+}
+
+
+/*
+====================================
+FINAL
+====================================
+*/
+
+function showFinal() {
+
+  document.getElementById("game")
+    .classList.add("hidden");
+
+  document.getElementById("final")
+    .classList.remove("hidden");
+
+  confetti();
+
+}
+
+
+/*
+====================================
+CONFETTI
+====================================
+*/
+
+function confetti() {
+
+  const emojis = [
+    "🎉",
+    "❤️",
+    "💕",
+    "✨",
+    "🎂",
+    "🥳"
+  ];
+
+
+  for (let i = 0; i < 80; i++) {
+
+    const item =
+      document.createElement("div");
+
+    item.className = "confetti";
+
+    item.innerText =
+      emojis[Math.floor(Math.random() * emojis.length)];
+
+    item.style.left =
+      Math.random() * 100 + "vw";
+
+    item.style.animationDelay =
+      Math.random() * 2 + "s";
+
+    document.body.appendChild(item);
+
+    setTimeout(function() {
+
+      item.remove();
+
+    }, 5000);
+
+  }
+
+}
 
 </script>
 
