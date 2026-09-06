@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,20 +19,24 @@
       height: 100vh;
       padding: 20px;
     }
+
     h1 {
       font-size: 3em;
       color: #b0134d;
       margin-bottom: 10px;
     }
+
     p {
       font-size: 1.5em;
       margin: 10px 0;
     }
+
     .buttons {
       margin-top: 20px;
       position: relative;
       height: 80px;
     }
+
     button {
       font-size: 1.5em;
       padding: 12px 25px;
@@ -41,19 +46,23 @@
       margin: 5px;
       transition: all 0.3s ease;
     }
+
     .yes {
       background-color: #ff4d4d;
       color: white;
     }
+
     .yes:hover {
       background-color: #ff1a1a;
       transform: scale(1.1);
     }
+
     .no {
       background-color: #333;
       color: white;
       position: absolute;
     }
+
     .invite {
       display: none;
       margin-top: 40px;
@@ -63,9 +72,15 @@
     }
   </style>
 </head>
+
 <body>
+
   <h1>Will you come celebrate your Birthday?</h1>
-  <p>🎂 Let's celebrate on <strong>11 September</strong> at <strong>Osteria Gia, Central Park, Jakarta</strong> 🎉</p>
+
+  <p>
+    🎂 Let's celebrate <strong>tomorrow, 7 September</strong>
+    at <strong>Pacific Place, Jakarta</strong> 🎉
+  </p>
 
   <div class="buttons">
     <button class="yes" onclick="showInvite()">Yes</button>
@@ -74,9 +89,9 @@
 
   <div class="invite" id="invite">
     <h2>🎉 You're Invited! 🎉</h2>
-    <p>📅 Date: 11 September</p>
-    <p>📍 Location: Osteria Gia, Central Park, Jakarta</p>
-    <p>Can't wait to see you there!</p>
+    <p>📅 Date: 7 September</p>
+    <p>📍 Location: Pacific Place, Jakarta</p>
+    <p>Can't wait to see you there! ❤️</p>
   </div>
 
   <script>
@@ -88,14 +103,20 @@
 
     function moveNo() {
       const noBtn = document.getElementById("noBtn");
-      noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
-      noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
 
-      // grow Yes button
+      noBtn.style.top =
+        Math.random() * (window.innerHeight - 50) + "px";
+
+      noBtn.style.left =
+        Math.random() * (window.innerWidth - 100) + "px";
+
+      // Grow the Yes button
       const yesBtn = document.querySelector(".yes");
       yesSize += 0.3;
       yesBtn.style.fontSize = yesSize + "em";
     }
   </script>
+
 </body>
 </html>
+```
