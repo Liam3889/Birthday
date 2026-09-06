@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Birthday Surprise ❤️</title>
+<title>For You ❤️</title>
 
 <style>
 
@@ -15,68 +15,190 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  text-align: center;
+  font-family: "Trebuchet MS", Arial, sans-serif;
   background: linear-gradient(135deg, #ff9a9e, #fecfef, #ff758c);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   color: #4a1730;
+  overflow-x: hidden;
 }
 
 #app {
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
 }
 
-/* HEART */
+/* GENERAL */
+
+.hidden {
+  display: none !important;
+}
+
+.card {
+  background: rgba(255,255,255,0.94);
+  padding: 30px 25px;
+  border-radius: 28px;
+  box-shadow: 0 15px 45px rgba(100,0,40,0.2);
+  animation: appear 0.5s ease;
+}
+
+h1 {
+  color: #a30f48;
+  font-size: 2.7rem;
+}
+
+h2 {
+  color: #a30f48;
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* START HEART */
 
 .heart {
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
   background: #ff3f68;
-  margin: 50px auto;
-  transform: rotate(-45deg);
+  margin: 55px auto;
   position: relative;
+  transform: rotate(-45deg);
   cursor: pointer;
-  animation: beat 1.2s infinite;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: heartbeat 1.2s infinite;
+  box-shadow: 0 12px 30px rgba(150,0,50,0.25);
 }
 
 .heart:before,
 .heart:after {
   content: "";
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
   background: #ff3f68;
   border-radius: 50%;
   position: absolute;
 }
 
 .heart:before {
-  top: -65px;
+  top: -70px;
   left: 0;
 }
 
 .heart:after {
   top: 0;
-  left: 65px;
+  left: 70px;
 }
 
 .heart span {
   position: absolute;
   z-index: 10;
+  width: 140px;
   color: white;
   font-weight: bold;
-  font-size: 18px;
-  width: 130px;
+  font-size: 17px;
   transform: rotate(45deg);
-  top: 48px;
+  top: 52px;
   left: 0;
 }
 
-@keyframes beat {
+/* QUESTION */
+
+.progress {
+  color: #ff4775;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+.question {
+  font-size: 1.55rem;
+  font-weight: bold;
+  margin: 25px 0;
+}
+
+.answer {
+  width: 100%;
+  max-width: 480px;
+  display: block;
+  margin: 11px auto;
+  padding: 15px 12px;
+  border: none;
+  border-radius: 18px;
+  background: #ff5c82;
+  color: white;
+  font-size: 1.08rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.answer:hover {
+  transform: scale(1.03);
+  background: #e83d69;
+}
+
+.answer.correct {
+  background: #35a86b !important;
+}
+
+.answer.wrong {
+  background: #555 !important;
+  animation: shake 0.35s;
+}
+
+.message {
+  min-height: 35px;
+  margin-top: 18px;
+  font-weight: bold;
+  color: #a30f48;
+}
+
+.next {
+  border: none;
+  border-radius: 30px;
+  padding: 14px 32px;
+  margin-top: 15px;
+  background: #a30f48;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.next:hover {
+  background: #790b35;
+  transform: scale(1.05);
+}
+
+/* FINAL */
+
+.final-heart {
+  font-size: 75px;
+  animation: heartbeat 1s infinite;
+}
+
+.invite-date {
+  background: #fff0f5;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.invite-date p {
+  margin: 12px 0;
+}
+
+.final-message {
+  font-size: 1.35rem;
+  color: #a30f48;
+  font-weight: bold;
+}
+
+/* ANIMATIONS */
+
+@keyframes heartbeat {
 
   0%,100% {
     transform: rotate(-45deg) scale(1);
@@ -88,105 +210,89 @@ body {
 
 }
 
-/* CARD */
+@keyframes appear {
 
-.card {
-  background: rgba(255,255,255,0.92);
-  padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
 }
 
-h1 {
-  color: #a30f48;
-  font-size: 2.5rem;
-}
+@keyframes shake {
 
-h2 {
-  color: #a30f48;
-}
+  0%,100% {
+    transform: translateX(0);
+  }
 
-p {
-  font-size: 1.2rem;
-  line-height: 1.5;
-}
+  25% {
+    transform: translateX(-8px);
+  }
 
-.question {
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin: 25px 0;
-}
+  75% {
+    transform: translateX(8px);
+  }
 
-.answer {
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  margin: 10px auto;
-  padding: 15px;
-  border: none;
-  border-radius: 15px;
-  background: #ff5c82;
-  color: white;
-  font-size: 1.1rem;
-  cursor: pointer;
 }
-
-.answer:hover {
-  background: #e93666;
-  transform: scale(1.03);
-}
-
-.next {
-  margin-top: 20px;
-  padding: 14px 30px;
-  border: none;
-  border-radius: 30px;
-  background: #a30f48;
-  color: white;
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-
-.next:hover {
-  background: #7d0c38;
-}
-
-.letter {
-  display: inline-block;
-  background: #ff3f68;
-  color: white;
-  padding: 10px 17px;
-  border-radius: 12px;
-  font-size: 25px;
-  font-weight: bold;
-  margin-top: 15px;
-}
-
-.wrong {
-  background: #555 !important;
-}
-
-.hidden {
-  display: none;
-}
-
-/* CONFETTI */
 
 .confetti {
   position: fixed;
   top: -30px;
+  z-index: 100;
   font-size: 25px;
   animation: fall 3s linear forwards;
 }
 
 @keyframes fall {
 
-  from {
-    transform: translateY(0) rotate(0deg);
-  }
-
   to {
     transform: translateY(110vh) rotate(720deg);
+  }
+
+}
+
+@media(max-width:600px) {
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  .card {
+    padding: 25px 18px;
+  }
+
+  .heart {
+    width: 115px;
+    height: 115px;
+  }
+
+  .heart:before,
+  .heart:after {
+    width: 115px;
+    height: 115px;
+  }
+
+  .heart:before {
+    top: -57px;
+  }
+
+  .heart:after {
+    left: 57px;
+  }
+
+  .heart span {
+    width: 115px;
+    top: 42px;
+    font-size: 14px;
   }
 
 }
@@ -202,43 +308,45 @@ p {
 
   <div id="start">
 
-    <h1>A Little Surprise ❤️</h1>
+    <h1>Hey You ❤️</h1>
 
     <p>
-      I have something special for you...
+      I have a little surprise for you...
     </p>
 
     <p>
-      But first, solve a few puzzles! 🧩
+      But first, let's see how well you know us. 👀
     </p>
 
     <div class="heart" onclick="startGame()">
       <span>TAP ME</span>
     </div>
 
-    <p>❤️ Tap the heart ❤️</p>
+    <p>
+      ❤️ Tap the heart to begin ❤️
+    </p>
 
   </div>
 
 
-  <!-- PUZZLE -->
+  <!-- GAME -->
 
   <div id="game" class="card hidden">
 
-    <p id="counter"></p>
+    <div id="progress" class="progress"></div>
 
-    <h2>🧩 Solve the Puzzle</h2>
+    <h2 id="title"></h2>
 
     <div id="question" class="question"></div>
 
     <div id="answers"></div>
 
-    <div id="result"></div>
+    <div id="message" class="message"></div>
 
     <button
       id="next"
       class="next hidden"
-      onclick="nextPuzzle()">
+      onclick="nextQuestion()">
       Next ❤️
     </button>
 
@@ -249,35 +357,41 @@ p {
 
   <div id="final" class="card hidden">
 
-    <div style="font-size:70px;">
+    <div class="final-heart">
       ❤️
     </div>
 
-    <h1>🎉 You're Invited! 🎉</h1>
+    <h1>YOU PASSED! 🎉</h1>
 
     <p>
-      You solved all the puzzles!
+      Okay... clearly you know me pretty well. 😌
     </p>
 
-    <hr>
+    <p class="final-message">
+      So I think you deserve to know what's happening tomorrow...
+    </p>
+
+    <div class="invite-date">
+
+      <p>
+        🎂 <strong>Birthday Celebration</strong>
+      </p>
+
+      <p>
+        📅 <strong>Tomorrow — 7 September</strong>
+      </p>
+
+      <p>
+        📍 <strong>Pacific Place, Jakarta</strong>
+      </p>
+
+    </div>
 
     <p>
-      🎂 <strong>Birthday Celebration</strong>
+      Can't wait to see you there ❤️
     </p>
 
-    <p>
-      📅 <strong>Tomorrow — 7 September</strong>
-    </p>
-
-    <p>
-      📍 <strong>Pacific Place, Jakarta</strong>
-    </p>
-
-    <p>
-      Can't wait to see you there! ❤️
-    </p>
-
-    <p style="font-size:35px;">
+    <p style="font-size:40px;">
       🎂 🎉 🥳 💕
     </p>
 
@@ -288,128 +402,139 @@ p {
 
 <script>
 
-/*
-====================================
-PUZZLES
-====================================
-*/
+/* =================================
+   YOUR QUESTIONS
+================================= */
 
-const puzzles = [
+const questions = [
 
   {
-    question: "What comes next? 🍎 🍌 🍎 🍌 ?",
-    answers: ["🍎", "🍊", "🍉", "🍓"],
-    correct: 0,
-    letter: "P"
-  },
-
-  {
-    question: "How many days are in a week?",
-    answers: ["5", "6", "7", "8"],
-    correct: 2,
-    letter: "A"
-  },
-
-  {
-    question: "Which one doesn't belong?",
-    answers: ["🐶", "🐱", "🐰", "🍕"],
-    correct: 3,
-    letter: "C"
-  },
-
-  {
-    question: "What is 2 + 3?",
-    answers: ["4", "5", "6", "7"],
-    correct: 1,
-    letter: "I"
-  },
-
-  {
-    question: "Which one is a fruit?",
+    title: "🎂 Question 1",
+    question: "Whose birthday is today?",
     answers: [
-      "🍎 Apple",
-      "🥕 Carrot",
-      "🥔 Potato",
-      "🥦 Broccoli"
+      "You",
+      "YOUUUUUUUU",
+      "YOUUUUUUUUUUUUUUUU",
+      "TE AMO"
     ],
-    correct: 0,
-    letter: "F"
+    correct: 2
   },
 
   {
-    question: "Complete the pattern: ❤️ 💕 ❤️ 💕 ?",
+    title: "💕 Question 2",
+    question: "Your nickname?",
     answers: [
-      "❤️",
-      "⭐",
-      "🌙",
-      "🎈"
+      "Baby",
+      "Magnolia",
+      "Ratu Duta Kanjeng .....",
+      "Princess"
     ],
-    correct: 0,
-    letter: "I"
+    correct: 2
   },
 
   {
-    question: "What do birthdays usually have? 🎂",
+    title: "🦸 Question 3",
+    question: "My fav Kamen Rider?",
     answers: [
-      "Cake 🎂",
-      "Homework 📚",
-      "Rain 🌧️",
-      "Snow ❄️"
+      "Ryuki",
+      "Kabuto",
+      "Kyuga",
+      "OOO",
+      "Fourze"
     ],
-    correct: 0,
-    letter: "C"
+    correct: 1
+  },
+
+  {
+    title: "🧸 Question 4",
+    question: "Your fav character?",
+    answers: [
+      "Lotso",
+      "Stitch",
+      "Hirono",
+      "Unicorn"
+    ],
+    correct: 0
+  },
+
+  {
+    title: "👗 Question 5",
+    question: "My fav brand?",
+    answers: [
+      "Dior",
+      "Chanel",
+      "LV",
+      "Loro Piana",
+      "Kanoa"
+    ],
+    correct: 4
+  },
+
+  {
+    title: "❤️ Final Question",
+    question: "Who loves you?",
+    answers: [
+      "MEEEEEE",
+      "Your bf",
+      "William",
+      "Random post",
+      "All of the above"
+    ],
+    correct: 4
   }
 
 ];
 
 
-/*
-====================================
-GAME VARIABLES
-====================================
-*/
+/* =================================
+   GAME VARIABLES
+================================= */
 
-let current = 0;
-
-let letters = [];
+let currentQuestion = 0;
 
 
-/*
-====================================
-START GAME
-====================================
-*/
+/* =================================
+   START
+================================= */
 
 function startGame() {
 
-  document.getElementById("start").classList.add("hidden");
+  document.getElementById("start")
+    .classList.add("hidden");
 
-  document.getElementById("game").classList.remove("hidden");
+  document.getElementById("game")
+    .classList.remove("hidden");
 
-  showPuzzle();
+  showQuestion();
 
 }
 
 
-/*
-====================================
-SHOW PUZZLE
-====================================
-*/
+/* =================================
+   SHOW QUESTION
+================================= */
 
-function showPuzzle() {
+function showQuestion() {
 
-  const puzzle = puzzles[current];
+  const q = questions[currentQuestion];
 
-  document.getElementById("counter").innerText =
-    "Puzzle " + (current + 1) + " of " + puzzles.length;
+  document.getElementById("progress").innerText =
+    "QUESTION " +
+    (currentQuestion + 1) +
+    " OF " +
+    questions.length;
+
+  document.getElementById("title").innerText =
+    q.title;
 
   document.getElementById("question").innerText =
-    puzzle.question;
+    q.question;
 
-  document.getElementById("result").innerHTML = "";
+  document.getElementById("message").innerText = "";
 
-  document.getElementById("next").classList.add("hidden");
+  document.getElementById("next")
+    .classList.add("hidden");
+
 
   const answers =
     document.getElementById("answers");
@@ -417,7 +542,7 @@ function showPuzzle() {
   answers.innerHTML = "";
 
 
-  puzzle.answers.forEach(function(answer, index) {
+  q.answers.forEach(function(answer, index) {
 
     const button =
       document.createElement("button");
@@ -439,77 +564,73 @@ function showPuzzle() {
 }
 
 
-/*
-====================================
-CHECK ANSWER
-====================================
-*/
+/* =================================
+   CHECK ANSWER
+================================= */
 
 function checkAnswer(index, button) {
 
-  const puzzle = puzzles[current];
+  const q = questions[currentQuestion];
 
 
-  if (index === puzzle.correct) {
+  /* CORRECT */
 
-    letters.push(puzzle.letter);
+  if (index === q.correct) {
 
-    button.style.background = "#35a86b";
+    button.classList.add("correct");
 
-    document.getElementById("result").innerHTML =
-      "<p>🎉 Correct!</p>" +
-      "<p>You unlocked:</p>" +
-      '<div class="letter">' +
-      puzzle.letter +
-      "</div>";
+    document.getElementById("message").innerText =
+      "CORRECT 😌❤️ I knew you knew this.";
 
 
-    document.getElementById("next")
-      .classList.remove("hidden");
-
-
-    const buttons =
+    const allButtons =
       document.querySelectorAll(".answer");
 
-    buttons.forEach(function(btn) {
+    allButtons.forEach(function(btn) {
 
       btn.disabled = true;
 
     });
 
+
+    document.getElementById("next")
+      .classList.remove("hidden");
+
   }
+
+
+  /* WRONG */
 
   else {
 
     button.classList.add("wrong");
 
-    button.innerText = "❌ Nope! Try again";
+    document.getElementById("message").innerText =
+      "Really? 😭 You better try again.";
+
 
     setTimeout(function() {
 
       button.classList.remove("wrong");
 
-      button.innerText =
-        puzzle.answers[index];
+      document.getElementById("message").innerText = "";
 
-    }, 800);
+    }, 900);
 
   }
 
 }
 
 
-/*
-====================================
-NEXT PUZZLE
-====================================
-*/
+/* =================================
+   NEXT QUESTION
+================================= */
 
-function nextPuzzle() {
+function nextQuestion() {
 
-  current++;
+  currentQuestion++;
 
-  if (current >= puzzles.length) {
+  if (currentQuestion >= questions.length) {
 
     showFinal();
 
@@ -517,18 +638,16 @@ function nextPuzzle() {
 
   else {
 
-    showPuzzle();
+    showQuestion();
 
   }
 
 }
 
 
-/*
-====================================
-FINAL
-====================================
-*/
+/* =================================
+   FINAL INVITATION
+================================= */
 
 function showFinal() {
 
@@ -538,50 +657,53 @@ function showFinal() {
   document.getElementById("final")
     .classList.remove("hidden");
 
-  confetti();
+  makeConfetti();
 
 }
 
 
-/*
-====================================
-CONFETTI
-====================================
-*/
+/* =================================
+   CONFETTI
+================================= */
 
-function confetti() {
+function makeConfetti() {
 
   const emojis = [
-    "🎉",
     "❤️",
     "💕",
-    "✨",
+    "🎉",
     "🎂",
+    "✨",
     "🥳"
   ];
 
 
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 70; i++) {
 
-    const item =
+    const piece =
       document.createElement("div");
 
-    item.className = "confetti";
+    piece.className = "confetti";
 
-    item.innerText =
-      emojis[Math.floor(Math.random() * emojis.length)];
+    piece.innerText =
+      emojis[
+        Math.floor(
+          Math.random() * emojis.length
+        )
+      ];
 
-    item.style.left =
+    piece.style.left =
       Math.random() * 100 + "vw";
 
-    item.style.animationDelay =
+    piece.style.animationDelay =
       Math.random() * 2 + "s";
 
-    document.body.appendChild(item);
+    document.body.appendChild(piece);
+
 
     setTimeout(function() {
 
-      item.remove();
+      piece.remove();
 
     }, 5000);
 
